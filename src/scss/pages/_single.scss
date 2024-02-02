@@ -1,0 +1,58 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.single_block{
+    padding-block: 3rem 10rem;
+    background: linear-gradient(166deg, v.$negro 21.01%, v.$azul 103.53%);
+    &-grid{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 271px;
+        grid-gap: 6%;
+    }
+    aside{
+        @include m.flex(center, 3.75rem);
+        flex-direction: column;
+    }
+    &-banner{
+        margin-bottom: 35px;
+        .tag{
+            @include m.tag;
+        }
+    }
+    &-content{
+        h1,h2,h3,h4,h5,h6{
+            color: v.$blanco;
+            font-family: v.$bold;
+
+            margin-bottom: 24px;
+        }
+        h1{font-size: 30px;}
+        h2{font-size: 27px;}
+        h3{font-size: 23px;}
+        h4{font-size: 21px;}
+
+        .content{
+            &>*{
+                &:not(:last-child){
+                    margin-bottom: 22px;
+                }
+            }
+            ul, ol{
+                margin-left: 21px;
+            }
+            p, li, span{
+                color: v.$blanco;
+                font-family: v.$regular;
+                font-size: 19px;
+            }
+        }
+    }
+    &-back{
+        margin-top: 5rem;
+        .link-it{
+            @include m.flip_button(130px, 48px, 19px, v.$azul, v.$verde);
+            margin-inline: auto;
+        }
+    }
+}

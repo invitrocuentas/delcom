@@ -1,0 +1,250 @@
+@use 'variables' as v;
+
+/** Media Queries **/
+@mixin telefono {
+    @media (max-width: v.$telefono) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (max-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin tabletlg {
+    @media (max-width: v.$tablet_lg) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (max-width: v.$desktop) {
+        @content;
+    }
+}
+@mixin desktoplg {
+    @media (max-width: v.$desktop_lg) {
+        @content;
+    }
+}
+@mixin television {
+    @media (max-width: v.$television) {
+        @content;
+    }
+}
+
+@mixin fullWH {
+    width: 100%;
+    height: 100%;
+}
+
+@mixin text-shadow {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+@mixin transition($s) {
+    transition: all $s ease;
+}
+
+@mixin flex($prop, $gap){
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: $prop;
+    gap: $gap;
+}
+
+@mixin grid($n, $gap){
+    display: grid;
+    grid-template-columns: repeat($n, 1fr);
+    grid-gap: $gap;
+}
+
+/*
+    Sombra
+*/
+@mixin shadow($x: 0, $y: 4px, $desenfocar: 4px, $color: rgba(0, 0, 0, 0.25)) {
+    box-shadow: $x $y $desenfocar $color;
+}
+
+/*
+    Centrar en el eje horizontal
+*/
+@mixin centerX{
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/*
+    Centrar en el eje vertical
+*/
+@mixin centerY{
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/*
+    Centrar en ambos ejes
+*/
+@mixin centerXY{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*
+    <hr>
+    @param color
+*/
+@mixin hr($color){
+    width: 100%;
+    height: 2px;
+    display: block;
+    background: $color;
+}
+
+/* 
+    Imagen en cuadrado 1x1
+*/
+@mixin square($size){
+    display: block;
+    width: $size;
+    height: $size;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* 
+    Máximo de lineas
+    para un parráfo
+*/
+@mixin lines($n){
+    display: -webkit-box;
+    -webkit-line-clamp: $n;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 
+    Eliminar los pseudocodigos 
+    de un elemento.
+    - Mayormente son generados por Woocommerce
+*/
+@mixin delete_pseudo{
+    &::before, &::after{
+        display: none !important;
+    }
+}
+
+/*
+    Customiza su scrollbar
+*/
+@mixin scroll_custom($width, $thumb, $track){
+    padding-right: calc($width + 4px);
+    &::-webkit-scrollbar{
+        border-radius: 5px;
+        width: $width;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: $thumb;
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-track{
+        background: $track;
+        border-radius: 5px;
+    }
+}
+
+/*
+    Botones
+*/
+
+%cssShareButton{
+    min-height: 46px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+@mixin back_button{
+    display: block;
+    border-radius: 2px;
+    background: v.$azul;
+    border: 2px solid v.$azul;
+    color: v.$blanco;
+    font-family: v.$medium;
+    font-size: 18px;
+    padding: 11px 36px;
+    width: fit-content;
+    margin: 6.5rem auto 0;
+    &:is(:hover, :focus){
+        background: transparent;
+        color: v.$azul;
+    }
+}
+
+@mixin tag{
+    position: absolute;
+    left: 0;
+    top: 28px;
+    z-index: 3;
+    padding: 10px 1rem 10px 2rem;
+    background: v.$verde2;
+    font-family: v.$regular;
+    font-weight: 100;
+    font-size: 24px;
+}
+
+@mixin flip_button($width, $height, $fz: '16px', $primary: v.$verde, $secondary: v.$azul){
+    display: block;
+    width: $width;
+    height: $height;
+    border-radius: 2px;
+    overflow: hidden;
+    perspective: 1000px;
+    &-inner{
+        position: relative;
+        @include fullWH;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+    }
+    &>p{
+        position: absolute;
+        @include centerXY;
+        z-index: 1;
+        font-family: v.$regular;
+        color: v.$blanco;
+        font-size: $fz;
+        width: 100%;
+        text-align: center;
+        @include transition(.5s);
+        @include flex(center, 8px);
+    }
+    img{
+        max-width: 22px;
+        max-height: 26px;
+        object-fit: contain;
+    }
+    &-front, &-back{
+        position: absolute;
+        @include fullWH;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    &-front{
+        background: $primary;
+    }
+    &-back{
+        background: $secondary;
+        transform: rotateY(180deg);
+    }
+    &:hover{
+        &>p{
+            font-family: v.$bold;
+        }
+        &>div{
+            transform: rotateY(180deg);
+        }
+    }
+}

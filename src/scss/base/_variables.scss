@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url(../../fonts/Poppins-Regular.ttf);
+    font-weight: 100;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url(../../fonts/Poppins-Medium.ttf);
+    font-weight: 100;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url(../../fonts/Poppins-Bold.ttf);
+    font-weight: 100;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins-SemiBold';
+    src: url(../../fonts/Poppins-SemiBold.ttf);
+    font-weight: 100;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins-ExtraBold';
+    src: url(../../fonts/Poppins-ExtraBold.ttf);
+    font-weight: 100;
+    font-display: swap;
+}
+
+// Fuentes
+$regular: 'Poppins-Regular';
+$bold: 'Poppins-Bold';
+$medium: 'Poppins-Medium';
+$semibold: 'Poppins-SemiBold';
+$extrabold: 'Poppins-ExtraBold';
+
+// Medidas de Media Queries
+$telefono: 480px;
+$tablet: 768px;
+$tablet_lg: 942px;
+$desktop: 1024px;
+$desktop_lg: 1200px;
+$television: 1462px;
+
+// Colores
+$blanco: #ffffff;
+$negro: #000000;
+$negro2: #1A1A1A;
+$verde: #198910;
+$verde2: #28C62F;
+$verde3: #375C42;
+$gris: #A9A9A9;
+$azul: #101D30;
+$gris2: #E8E9EB;
+$gris_oscuro: #575757;

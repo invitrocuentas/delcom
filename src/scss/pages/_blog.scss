@@ -1,0 +1,191 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.articles{
+    background: #070E16;
+    padding-block: 6rem;
+    min-height: 60vh;
+    &-grid{
+        @include m.grid(4, 30px 24px);
+        &>*{
+            width: 100%;
+        }
+    }
+    &-pagination{
+        margin-top: 5rem;
+        @include m.flex(center, 14px);
+        .next, .prev{
+            display: none !important;
+        }
+        .page-numbers:not(.next, .prev){
+            @include m.square(42px);
+            @include m.flex(center, 0);
+            border-radius: 2px;
+            &:not(.current){
+                font-family: v.$regular;
+                background: v.$blanco;
+                color: v.$verde;
+            }
+            &.current{
+                font-family: v.$bold;
+                background: v.$verde2;
+                color: v.$azul;
+            }
+        }
+    }
+
+    h2{
+        font-family: v.$bold;
+        font-size: 30px;
+    }
+
+    .contenedor{
+        &>h2{
+            text-align: center;
+            color: v.$blanco;
+            margin-bottom: 2rem;
+        }
+    }
+
+    .no-one{
+        color: v.$blanco;
+    }
+}
+
+%contenido{
+    p{
+        @include m.lines(2);
+    }
+    p, li, span{
+        font-family: v.$regular;
+        color: #222222;
+        font-size: 16px;
+    }
+}
+
+.article{
+    background: v.$blanco;
+    padding: 12px 9px 1.2rem;
+    border-radius: 2px;
+    margin-bottom: 50px;
+    width: 100%;
+    position: relative;
+
+    .link-it{
+        @include m.flip_button(150px, 34px, 15px);
+        margin-inline: auto;
+    }
+
+    &_big{
+        width: 100%;
+        position: relative;
+        grid-column: span 4;
+        height: 400px;
+        margin-bottom: 30px;
+        padding: 4rem 2rem 2rem;
+        @include m.flex(flex-end, 0);
+        flex-direction: column;
+        &::before{
+            position: absolute;
+            content: '';
+            inset: 0;
+            @include m.fullWH;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, v.$blanco 100%);
+            z-index: 2;
+        }
+        &-bg{
+            inset: 0;
+            background-size: cover !important;
+            z-index: 1;
+        }
+        &-tag{
+            @include m.tag;
+        }
+        &-content{
+            width: 100%;
+            position: relative;
+            z-index: 4;
+            h2{
+                color: v.$verde;
+                max-width: 360px;
+                @include m.lines(2);
+            }
+        }
+        &-excerpt{
+            margin-top: 16px;
+            max-width: 600px;
+            @extend %contenido;
+        }
+    }
+
+    &-thumbnail{
+        border-radius: 2px;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        img{
+            width: 100%;
+            aspect-ratio: 16/9;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+    &-content{
+        margin-top: 15px;
+        position: relative;
+        z-index: 2;
+    }
+    &-title{
+        font-family: v.$bold;
+        color: v.$verde;
+        font-size: 17px;
+        @include m.lines(2);
+        margin-bottom: 12px;
+    }
+    &-excerpt{
+        @extend %contenido;
+    }
+
+    &-meta{
+        background: v.$blanco;
+        position: absolute;
+        top: 70%;
+        left: 0;
+        width: 100%;
+        @include m.grid(2, 14px);
+        padding: 0 9px 1rem;
+        @include m.transition(.5s);
+        opacity: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+    &-view, &-date{
+        @include m.flex(flex-start, 8px);
+        width: fit-content;
+        img{
+            @include m.square(23px);
+        }
+        p{
+            font-family: v.$regular;
+            color: #1AAD25;
+            font-size: 15px;
+        }
+    }
+    &-view{
+        margin: 0 0 0 auto;
+    }
+    &-permalink{
+        grid-column: span 2;
+    }
+
+    &:hover{
+        .article{
+            &-meta{
+                top: calc(100% - 2px);
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+    }
+}

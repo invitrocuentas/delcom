@@ -1,0 +1,42 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.products{
+    &_back{
+        @include m.back_button;
+    }
+    &_container{
+        min-height: 60vh;
+        padding-block: 6rem 5.5rem;
+
+        .counter{
+            font-family: v.$regular;
+            color: v.$negro2;
+            text-align: left;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        &-grid{
+            width: 100%;
+            &:not(.all){
+                display: grid;
+                grid-template-columns: 216px 1fr;
+                grid-gap: 8%;
+            }
+            .list_products{
+                &-grid{
+                    @include m.grid(3, 40px 30px);
+                }
+            }
+            &.all{
+                .list_products{
+                    &-grid{
+                        @include m.grid(4, 40px 30px);
+                    }
+                }   
+            }
+
+        }
+    }
+}

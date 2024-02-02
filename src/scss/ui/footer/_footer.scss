@@ -1,0 +1,91 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+%txt{
+    color: v.$blanco;
+    font-family: v.$regular;
+    font-weight: 300;
+}
+
+.footer{
+    position: relative;
+    z-index: 20;
+    background: v.$azul;
+    padding-block: 0.5rem 1rem;
+    &::before, &::after{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 80px;
+    }
+    &::before{
+        clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+        filter: drop-shadow(0px -4px 11px rgba(2, 28, 0, 0.21));
+        background: v.$azul;
+        right: 0;
+        z-index: 2;
+        bottom: calc(100% - 2px);
+    }
+    &::after{
+        clip-path: polygon(0 0, 0% 100%, 100% 100%);
+        background: v.$verde3;
+        left: 0;
+        bottom: calc(100% - 1px);
+    }
+    &_grid{
+        margin-block: 1.3rem 1.8rem;
+        @include m.grid(3, 1fr);
+        max-width: 900px;
+        margin-inline: auto;
+        ul{
+            list-style: none;
+        }
+        li:not(:last-child){
+            margin-bottom: 10px;
+        }
+        p, a{
+            @extend %txt;
+        }
+    }
+    &_logo{
+        .logo{
+            @include m.square(100px);
+            margin-inline: auto;
+            img{
+                @include m.fullWH;
+                object-fit: contain;
+                object-position: center;
+            }
+        }
+    }
+    &_follow-us{
+        @include m.flex(center, 7px);
+        p{
+            @extend %txt;
+        }
+        ul{
+            @include m.flex(flex-start, 4px);
+            flex-wrap: nowrap;
+            list-style: none;
+        }
+    }
+    &_credits{
+        margin-top: 2rem;
+        background: v.$blanco;
+        padding-block: 14px;
+        p{
+            font-family: v.$regular;
+            font-weight: 400;
+            text-align: center;
+            color: v.$negro2;
+            font-size: 15px;
+        }
+    }
+
+    .info_contact{
+        img{
+            @include m.square(23px);
+            filter: invert(1) brightness(100);
+        }
+    }
+}

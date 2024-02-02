@@ -1,0 +1,201 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.page-template-nosotros{
+    background: #080E17;
+}
+
+%h2{
+    font-size: 30px;
+    font-family: v.$bold;
+}
+
+.our_section{
+    padding-block: 4rem;
+    .grid{
+        width: 100%;
+        @include m.grid(2, 30px);
+    }
+}
+
+.mv-ision{
+    .grid{
+        align-items: flex-start;
+    }
+    &-card{
+        @include m.flex(center, 15px);
+        flex-direction: column;
+        width: min(100%, 525px);
+        &>*{
+            width: 100%;
+        }
+        &.right{
+            margin: 0;
+        }
+        &.left{
+            margin-left: auto;
+        }
+    }
+    &-image{
+        @include m.square(100px);
+        @include m.flex(center, 0);
+        border: 2px solid v.$blanco;
+        border-radius: 50%;
+        img{
+            @include m.square(66%);
+        }
+    }
+    &-content{
+        background: linear-gradient(180deg, #28C62F 0%, #198910 100%);
+        border-radius: 5px;
+        @include m.flex(flex-start, 30px);
+        flex-direction: column;
+
+        min-height: 350px;
+
+        padding: 2rem 4rem 2rem;
+
+        &>*{
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        h2{
+            @extend %h2;
+            color: v.$azul;
+            &::before{
+                position: absolute;
+                content: '';
+                width: 70px;
+                height: 4px;
+                @include m.centerX;
+                top: calc(100% + 5px);
+                background: v.$azul;
+            }
+        }
+        p{
+            color: v.$blanco;
+            max-width: 390px;
+            line-height: 1.35em;
+        }
+    }
+}
+
+.who_are_us{
+    .content{
+        max-width: 450px;
+    }
+    .contenedor{
+        padding-block: 8rem 6rem;
+    }
+    .grid{
+        align-items: center;
+    }
+    &-image{
+        position: relative;
+        &::before{
+            position: absolute;
+            content: '';
+            border-radius: 5px;
+            @include m.square(373px);
+            transform: translate(50%,0) rotate(45deg);
+            background: v.$blanco;
+        }
+        img{
+            display: block;
+            @include m.square(373px);
+            margin-inline: auto;
+            border-radius: 5px;
+            position: relative;
+            z-index: 2;
+        }
+    }
+    &-content{
+        &>*{
+            font-size: 19px;
+        }
+        p, li, span{
+            color: v.$blanco;
+            font-family: v.$regular;
+            line-height: 1.375em;
+        }   
+        b, strong{
+            font-family: v.$bold;
+            color: v.$verde2;
+        }
+    }
+}
+
+.value_card{
+    width: min(100%, 322px);
+    margin-inline: auto;
+    &-img{
+        @include m.square(130px);
+        @include m.flex(center, 0);
+        margin-inline: auto;
+        border: 2px solid v.$blanco;
+        border-radius: 50%;
+        padding: 4%;
+        img{
+            @include m.square(100%);
+        }
+    }
+    &-info{
+        width: 100%;
+        h3{
+            text-align: center;
+            @extend %h2;
+            color: v.$verde2;
+
+            margin-block: 18px 10px;
+        }
+    }
+    .content{
+        p, li, span{
+            text-align: left;
+            color: v.$blanco;
+            font-family: v.$regular;
+            font-size: 14px;
+
+            line-height: 1.375em;
+        }
+    }
+}
+
+.values{
+    padding-bottom: 8rem;
+    &-flex{
+        @include m.flex(space-around, 60px 3%);
+        align-items: flex-start;
+    }
+    .col{
+        width: calc(100% / 3.3);
+        &:last-child{
+            .value_card{
+                width: min(100%, 100%);
+            }
+        }
+    }
+}
+
+.we_want{
+    background: url(../../images/bg-want.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    h2{
+        @extend %h2;
+    }
+    h2, p{
+        color: v.$azul;
+    }
+    p{
+        line-height: 1.375em;
+    }
+    .contenido{
+        &>*{
+            &:not(:last-child){
+                margin-bottom: 12px;
+            }
+        }
+    }
+}

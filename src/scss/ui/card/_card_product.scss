@@ -1,0 +1,98 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.card_product{
+    @include m.flex(center, 0);
+    aspect-ratio: 9/12.4;
+    width: 100%;
+    height: auto;
+    @include m.shadow;
+    background: v.$blanco;
+    border-radius: 3px;
+    position: relative;
+    &::before{
+        position: absolute;
+        content: '';
+        width: 0px;
+        height: 100%;
+        background: rgba($color: v.$verde, $alpha: 0.18);
+        @include m.centerX;
+        z-index: 1;
+        top: 0;
+        @include m.transition(.5s);
+    }
+    &>img{
+        @include m.fullWH;
+        object-fit: contain;
+        transform-origin: center;
+        object-position: center;
+        position: relative;
+        @include m.transition(.45s);
+        z-index: 2;
+    }
+    &>div{
+        position: absolute;
+        @include m.centerX;
+        width: 100%;
+        z-index: 2;
+        @include m.transition(.5s);
+        opacity: 0;
+
+        padding-inline: 1.25rem;
+    }
+    &-head{
+        top: 20%;
+        padding-top: 1.2rem;
+    }
+    h3, h4{
+        @include m.lines(1);
+    }
+    h3{
+        font-size: 26px;
+        color: v.$negro;
+        font-family: v.$bold;
+    }
+    h4{
+        font-size: 21px;
+        color: v.$verde;
+        font-family: v.$regular;
+        font-weight: 100;
+    }
+    &-foot{
+        bottom: 20%;
+        height: 68px;
+        @include m.flex(space-between, 10px);
+        background: rgba($color: v.$blanco, $alpha: 0.8);
+
+        div{
+            background: v.$azul;
+            border-radius: 2px;
+            width: 81px;
+            height: 36px;
+            font-size: 15px;
+            color: v.$blanco;
+            @include m.flex(center, 0);
+
+            font-family: v.$semibold;
+            font-weight: 100;
+        }
+    }
+    &:hover{
+        &::before{
+            width: 100%;
+        }
+        &>img{
+            transform: scale(0.87);
+        }
+        .card_product{
+            &-head{
+                opacity: 1;
+                top: 0;
+            }
+            &-foot{
+                opacity: 1;
+                bottom: 0;
+            }
+        }
+    }
+}

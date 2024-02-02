@@ -1,0 +1,44 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.social_events{
+    &-grid{
+        display: grid;
+        grid-template-columns: 0.87fr 1.13fr;
+        align-items: center;
+    }
+    img{
+        width: 100%;
+        height: auto;
+    }
+    &-bg{
+        background: linear-gradient(180deg, #0E1929 0%, #28C62F 100%);
+    }
+    .content{
+        width: min(100%, 480px);
+        margin: 0 0 0 15%;
+        h2, p{
+            color: v.$blanco;
+        }
+        h2{
+            font-family: v.$bold;
+            font-size: 40px;
+        }
+        &>p{
+            font-family: v.$regular;
+            font-size: 20px;
+            margin-block: 32px 28px;
+
+            line-height: 1.25em;
+        }
+        .link-it{
+            @include m.flip_button(164px, 48px, 18px, v.$azul, transparent);
+            &-front{
+                border: 1px solid v.$azul;
+            }
+            &-back{
+                border: 1px solid v.$blanco;
+            }
+        }
+    }
+}

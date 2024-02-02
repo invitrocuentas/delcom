@@ -1,0 +1,208 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+%fzh2{
+    font-size: 36px;
+    font-family: v.$regular;
+    font-weight: 100;
+    b, strong{
+        font-family: v.$bold;
+    }
+}
+
+%h2{
+    text-align: center;
+    color: v.$verde;
+    @extend %fzh2;
+}
+
+.social_bar{
+    position: fixed;
+    bottom: 14vh;
+    z-index: 15;
+    left: 40px;
+    list-style: none;
+    @include m.flex(center, .7rem);
+    flex-direction: column;
+    a{
+        @include m.square(40px);
+    }
+    img{
+        @include m.fullWH;
+        object-fit: contain;
+        object-position: center;
+    }
+}
+
+main.hero{
+    position: relative;
+    height: 88vh;
+    &>.contenedor{
+        padding-inline: 5rem;
+        position: absolute;
+        @include m.centerXY;
+        z-index: 3;
+    }
+    .link-it{
+        margin-top: -8vh;
+        @include m.flip_button(136px, 49px, 18px, v.$azul, v.$verde);
+        &>p{
+            color: v.$verde2;
+        }
+        &:hover{
+            &>p{
+                color: v.$azul;
+            }
+        }
+    }
+    .splide{
+        &__slide{
+            position: relative;
+            &::before{
+                position: absolute;
+                content: '';
+                inset: 0;
+                @include m.fullWH;
+                background: rgba($color: v.$negro, $alpha: 0.3);
+                z-index: 1;
+            }
+        }
+        &__arrows{
+            position: absolute;
+            @include m.centerXY;
+            z-index: 1;
+        }
+        &__arrow{
+            border-radius: 4px;
+            background: v.$verde;
+            @include m.square(52px);
+            @include m.flex(center, 0);
+            opacity: 1 !important;
+            img{
+                max-width: 19px;
+            }
+            &--prev{
+                left: 0;
+            }
+            &--next{
+                right: 0;
+            }
+        }
+    }
+    img{
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+.brands{
+    padding-block: 7.5rem;
+    &_grid{
+        @include m.grid(2, 24px 36px);
+    }
+    h2{
+        @extend %h2;
+        margin-bottom: 2.1rem;
+    }
+    &_back{
+        @include m.back_button;
+    }
+}
+
+.new_products{
+    background: v.$gris2;
+    padding-block: 4.5rem 4rem;
+    h2{
+        @extend %h2;
+        margin-bottom: 2.1rem;
+    }
+    .splide{
+        &__track{
+            padding: 10px 6px !important;
+        }
+    }
+}
+
+.single-product{
+    .new_products{
+        background: rgba($color: v.$verde, $alpha: 0.1);       
+    }    
+}
+
+.bg{
+    background: url(../../images/muro-hormigon.svg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.choose_delcom{
+    margin-top: -7vh;
+    position: relative;
+    z-index: 3;
+    .contenedor{
+        @include m.shadow;
+        border-radius: 3px;
+        padding: 3.5rem 2rem 2.5rem;
+        background: v.$gris2;
+    }
+    h2{
+        @extend %fzh2;
+        text-align: center;
+        color: v.$azul;
+        margin-bottom: 4.25rem;
+        b, strong{
+            color: v.$verde2;
+        }
+    }
+    &-flex{
+        @include m.flex(space-around, 30px);
+    }
+}
+
+.reason{
+    @include m.flex(center, 6px);
+    flex-direction: column;
+    &_image{
+        position: relative;
+        @include m.square(66px);
+        @include m.flex(center, 0);
+        padding: 1px;
+
+        &::before, &::after{
+            position: absolute;
+            content: '';
+            border-radius: 4px;
+            @include m.square(80px);
+            @include m.shadow;
+        }
+        &::after{
+            @include m.centerXY;
+            background: v.$verde3;
+        }
+        &::before{
+            transform: translate(0%, 0%) rotate(45deg);
+            background: v.$blanco;
+            z-index: 2;
+        }
+        img{
+            position: relative;
+            z-index: 3;
+            //@include m.fullWH;
+
+            object-fit: contain;
+            object-position: center;
+
+            max-width: 65px;
+            max-height: 57px;
+        }
+    }
+    &_txt{
+        margin-top: 1.9rem;
+        p{
+            font-family: v.$regular;
+            font-size: 20px;
+            text-align: center;
+            color: v.$azul;
+        }
+    }
+}

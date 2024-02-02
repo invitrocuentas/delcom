@@ -1,0 +1,136 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    background: transparent;
+    @include m.transition(.35s);
+    padding-block: 1.15rem 10px;
+    &_button{
+        @media (min-width: v.$tablet_lg){
+            display: none;
+        }
+    }
+    &_grid, &_navigation{
+        display: grid;
+        align-items: center;
+    }
+    &_grid{
+        grid-template-columns: 173px 1fr;
+        grid-gap: 20px 5%;
+    }
+    &_navigation{
+        grid-template-columns: 1fr 30%;
+    }
+    .menu-header-container{
+        width: 100%;
+        padding-inline: 1.1rem;
+    }
+    .ul_menu{
+        @include m.flex(center, 10px 7.5%);
+        list-style: none;
+        .sub-menu{
+            opacity: 0;
+            pointer-events: none;
+            padding: 1.1rem;
+            position: absolute;
+            top: 100%;
+            @include m.centerX;
+            background: v.$blanco;
+            border-radius: 4px;
+            list-style: none;
+            li{
+                &:not(:last-child){
+                    margin-bottom: 7px;
+                }
+            }
+            a{
+                padding-block: 2px;
+                font-family: v.$bold;
+                color: v.$azul;
+            }
+        }
+        &>li{
+            position: relative;
+            height: 38px;
+            @include m.flex(center, 0);
+            &>a{
+                @include m.flex(center, 0);
+                font-family: v.$regular;
+                color: v.$blanco;
+                padding: 6px 8px;
+                position: relative;
+                &::before{
+                    position: absolute;
+                    z-index: -1;
+                    content: '';
+                    width: 0px;
+                    @include m.centerX;
+                    background: v.$verde2;
+                    height: 100%;
+                    @include m.transition(.35s);
+                }
+            }
+            &:hover{
+                .sub-menu{
+                    opacity: 1;
+                    pointer-events: all;
+                }
+                &>a{
+                    font-family: v.$bold;
+                    color: v.$azul;
+                    &::before{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+    .search-form{
+        width: 100%;
+        height: 36px;
+        @include m.flex(space-between, 0);
+        flex-wrap: nowrap;
+        &>*{
+            height: 100%;
+        }
+        input{
+            width: 100%;
+            border: none;
+            background: v.$blanco;
+            color: v.$gris;
+            padding-inline: 12px;
+        }
+        button{
+            aspect-ratio: 1/1;
+            @include m.flex(center, 0);
+            width: auto;
+            border: none;
+            background: v.$verde;
+            padding: 7px;
+            img{
+                @include m.fullWH;
+            }
+        }
+    }
+    &_logo{
+        img{
+            filter: none;
+            @include m.transition(.35s);
+        }
+    }
+
+    &.scrolled{
+        background: v.$gris_oscuro;
+        .header{
+            &_logo{
+                img{
+                    filter: invert(1) brightness(100);
+                }
+            }
+        }
+    }
+}

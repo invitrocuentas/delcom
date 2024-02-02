@@ -1,0 +1,35 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.clients{
+    background: rgba($color: v.$azul, $alpha: 0.1);
+    padding-block: 4rem;
+    margin-top: 3rem;
+    &_grid{
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        grid-gap: 5%;
+        align-items: center;
+    }
+    h2{
+        color: v.$verde;
+        font-family: v.$bold;
+        text-align: left;
+        font-size: 30px;
+        line-height: 1.1em;
+    }
+    .splide{
+        &__slide{
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
+
+.page-template-nosotros{
+    .clients{
+        margin-top: 0;
+        padding-bottom: 10rem;
+    }
+}

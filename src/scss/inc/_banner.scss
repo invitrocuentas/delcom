@@ -1,0 +1,16 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.banner{
+    background: radial-gradient(343.4% 99.94% at 84.52% 25.77%, v.$verde2 0%, v.$verde 100%);
+    min-height: 150px;
+    height: 30vh;
+    @include m.flex(center, 0);
+    h1{
+        text-align: center;
+        color: v.$blanco;
+        font-family: v.$bold;
+        font-size: 40px;
+        @include m.text-shadow;
+    }
+}

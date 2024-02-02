@@ -1,0 +1,54 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.card_brand{
+    position: relative;
+    padding-block: 1.25rem;
+    padding-inline: 3.5rem 1.5rem;
+    @include m.flex(flex-start, 10px 42px);
+    &::before{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 86%;
+        bottom: 0;
+        @include m.centerX;
+        background: v.$azul;
+        border-radius: 4px;
+    }
+    &>*{
+        position: relative;
+        z-index: 2;
+    }
+    &-image{
+        aspect-ratio: 9/13;
+        @include m.transition(.35s);
+        max-width: 216px;
+        border-radius: 4px;
+        overflow: hidden;
+        transform-origin: bottom center;
+        img{
+            @include m.fullWH;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+    h3{
+        color: v.$blanco;
+        font-family: v.$bold;
+        font-size: 46px;
+        margin-bottom: -28px;
+        @include m.transition(.35s);
+    }
+    &:hover{
+        .card_brand{
+            &-image{
+                transform: scale(1.1);
+            }
+        }
+        h3{
+            color: v.$verde2;
+            transform: scale(0.9);
+        }
+    }
+}

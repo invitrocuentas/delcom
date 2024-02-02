@@ -1,0 +1,96 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.product_view{
+    padding-block: 4.75rem 6rem;
+    &-flex{
+        @include m.flex(space-between, 0);
+        align-items: flex-start;
+    }
+    &-images{
+        width: 47%;
+        display: grid;
+        grid-template-columns: 1fr 100px;        
+        grid-gap: 20px;
+
+        .splide{
+            &__track{
+                padding: 6px 2px !important;
+            }
+            &__slide{
+                @include m.shadow;
+                border: none !important;
+            }
+        }
+
+        #main{
+            img{
+                @include m.square(100%);
+                height: auto !important;
+            }
+        }
+        #thumbs{
+            .splide{
+                &__slide{
+                    @include m.flex(center, 0);
+                }
+            }
+            img{
+                @include m.square(96px);
+            }
+        }
+
+    }
+    &-info{
+        width: 50.5%;
+    }
+    &>*{
+        @include m.desktop{
+            width: 100%;
+        }
+    }
+
+    &-content{
+        background: rgba($color: v.$verde, $alpha: 0.1);
+        border-radius: 5px;
+        padding: 3rem 1.65rem 4.5rem;
+        h1{
+            color: v.$verde;
+            font-family: v.$bold;
+            font-size: 35px;
+        }
+        .content{
+            margin-block: 1rem 3rem;
+            p, li, span{
+                font-family: v.$regular;
+                color: #2A2A2A;
+                text-align: left;
+                font-size: 18px;
+                line-height: 1.4em;
+            }
+            ul, ol{
+                margin-left: 19px;
+            }
+            li:not(:last-child){
+                margin-bottom: 4px;
+            }
+        }
+        .action{
+            @include m.flex(flex-start, 12px 50px);
+            .btn_cotizar{
+                @include m.flip_button(184px, 52px, 21px, v.$azul, v.$verde);
+            }
+            .btn_pdf{
+                @include m.flip_button(206px, 52px, 21px, v.$azul, v.$verde);   
+            }
+        }
+    }
+}
+
+section.back{
+    padding-block: 5.5rem 6.5rem;
+    a{
+        @include m.back_button;
+        margin-block: 0 !important;
+    }
+}

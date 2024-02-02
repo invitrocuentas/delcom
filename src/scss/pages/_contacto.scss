@@ -1,0 +1,75 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.contacto{
+    padding-block: 5rem 8.5rem;
+    &_grid{
+        @include m.grid(2, 30px);
+        align-items: center;
+    }
+    .content{
+        h2{
+            font-size: 40px;
+            color: v.$verde2;
+            font-family: v.$bold;
+        }
+        p{
+            font-family: v.$regular;
+            font-size: 20px;
+            color: v.$negro2;
+
+            max-width: 430px;
+            margin-block: 2px 25px;
+        }
+    }
+
+    .info_contact{
+        list-style: none;
+        li{
+            @include m.flex(flex-start, 14px);
+            align-items: flex-start;
+            &:not(:last-child){
+                margin-bottom: 13px;
+            }
+            img{
+                @include m.square(25px);
+            }
+            div{
+                a, p{
+                    color: v.$negro2;
+                    font-size: 18px !important;
+                }
+            }
+        }
+    }
+
+}
+
+.info_contact{
+    list-style: none;
+    li{
+        @include m.flex(flex-start, 14px);
+        align-items: flex-start;
+        &:not(:last-child){
+            margin-bottom: 13px;
+        }
+        img{
+            object-fit: contain;
+            object-position: center;
+        }
+        div{
+            a, p{
+                font-family: v.$regular;
+                font-weight: 300;
+            }
+            a{
+                display: block;
+            }
+            &>*{
+                &:not(:last-child){
+                    margin-bottom: 6px;
+                }
+            }
+        }
+    }
+}
